@@ -1,31 +1,32 @@
-language: android
-android:
- components:
- - build-tools-28.0.3
- - android-28
- - android-21
- - add-on
- - extra
- - platform-tools
- - tools
- - extra-google-googleplayservices
-- extra-google-m2repository
- - extra-android-m2repository
- - addon-google_apis-google-28
- - sys-img-armeabi-v7a-android-21
-before_install:
- - yes | sdkmanager "platforms;android-28"
-deploy:
- provider: releases
- apikey: $GITHUB_KEY
- file: app/build/outputs/apk/release/app-release.apk
- skip_cleanup: true
- on:
- tags: true
+language: android  
+android: 
+  components: 
+    - build-tools-28.0.3 
+    - android-28 
+    - android-21 
+    - add-on 
+    - extra 
+    - platform-tools 
+    - tools 
+    - extra-google-googleplayservices 
+- extra-google-m2repository 
+    - extra-android-m2repository 
+    - addon-google_apis-google-28 
+    - sys-img-armeabi-v7a-android-21 
+before_install: 
+  - yes | sdkmanager "platforms;android-28" 
  
-script: ./gradlew :app:build
-
-env:
+deploy: 
+  provider: releases 
+  apikey: $GITHUB_KEY 
+  file: app/build/outputs/apk/release/app-release.apk 
+  skip_cleanup: true 
+  on: 
+    tags: true 
+    
+    script: ./gradlew :app:build 
+    
+    env:
  global:
  - MALLOC_ARENA_MAX=2
 sudo: required
@@ -35,9 +36,9 @@ before_script:
  - adb wait-for-device
  - adb shell input keyevent 82 &
 
-notifications:
- email:
- recipients:
- - myemail@address.com
- on_success: always
- on_failure: always
+notifications: 
+  email: 
+    recipients: 
+    - myemail@address.com 
+    on_success: always 
+    on_failure: always 
