@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.moblabandroid">
+          xmlns:tools="http://schemas.android.com/tools" package="com.example.moblabandroid">
 
     <application
+            android:name=".Application"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".ItemListActivity"
+                android:name=".ui.mainlist.ItemListActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ItemDetailActivity"
+                android:name=".ui.details.ItemDetailActivity"
                 android:label="@string/title_item_detail"
-                android:parentActivityName=".ItemListActivity"
+                android:parentActivityName=".ui.mainlist.ItemListActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.example.moblabandroid.ItemListActivity"/>
+                    android:value="com.example.moblabandroid.ui.mainlist.ItemListActivity"/>
         </activity>
     </application>
 
