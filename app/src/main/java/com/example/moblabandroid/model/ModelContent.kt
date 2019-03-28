@@ -1,7 +1,6 @@
-package com.example.moblabandroid.dummy
+package com.example.moblabandroid.model
 
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -9,17 +8,17 @@ import java.util.HashMap
  *
  * TODO: Replace all uses of this class before publishing your app.
  */
-object DummyContent {
+object ModelContent {
 
     /**
      * An array of sample (dummy) items.
      */
-    val ITEMS: MutableList<DummyItem> = ArrayList()
+    val ITEMS: MutableList<RnMItem> = ArrayList()
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    val ITEM_MAP: MutableMap<String, DummyItem> = HashMap()
+    val ITEM_MAP: MutableMap<String, RnMItem> = HashMap()
 
     private val COUNT = 25
 
@@ -30,13 +29,13 @@ object DummyContent {
         }
     }
 
-    private fun addItem(item: DummyItem) {
+    private fun addItem(item: RnMItem) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createDummyItem(position: Int): DummyItem {
-        return DummyItem(position.toString(), "Item " + position, makeDetails(position))
+    private fun createDummyItem(position: Int): RnMItem {
+        return RnMItem(position.toString(), "Item " + position, makeDetails(position))
     }
 
     private fun makeDetails(position: Int): String {
@@ -51,7 +50,7 @@ object DummyContent {
     /**
      * A dummy item representing a piece of content.
      */
-    data class DummyItem(val id: String, val content: String, val details: String) {
+    data class RnMItem(val id: String, val content: String, val details: String) {
         override fun toString(): String = content
     }
 }
