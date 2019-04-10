@@ -37,6 +37,8 @@ dependencies {
     implementation toolkitDependencies.gson
     implementation toolkitDependencies.glide
     implementation toolkitDependencies.eventbus
+    implementation swaggerDependecies.auth
+    implementation swaggerDependecies.annotation
 
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
