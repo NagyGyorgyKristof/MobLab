@@ -1,28 +1,34 @@
 package com.example.moblabandroid.interactor
 
 import android.util.Log
+import com.example.moblabandroid.db.CharacterDao
+import com.example.moblabandroid.db.entities.RoomCharacter
+import com.example.moblabandroid.db.toCharacter
+import com.example.moblabandroid.db.toRoomModel
 import com.example.moblabandroid.interactor.event.GetCharacterEvent
+import com.example.moblabandroid.model.Character
 import com.example.moblabandroid.network.RnMApi
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
 class ApiInteractor @Inject constructor(
-    private var RnMApi: RnMApi
+    private var RnMApi: RnMApi,
+    private var characterDao: CharacterDao
 ) {
     fun getAllCharacter() {
         val event = GetCharacterEvent()
 
         try {
             val characterQueryCall = RnMApi.getAllChars()
+            val charactersFromLocalDb = characterDao.getAllCharacters()
 
             val response = characterQueryCall.execute()
             Log.d("getAllCharacter Reponse", response.body().toString())
             if (response.code() != 200) {
                 throw Exception("Result code is not 200")
             }
-
             event.code = response.code()
-            event.characters = response.body()?.result
+            event.characters = response.body()?.result?.plus(charactersFromLocalDb.map(RoomCharacter::toCharacter))
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
             event.throwable = e
@@ -35,19 +41,31 @@ class ApiInteractor @Inject constructor(
 
         try {
             val characterQueryCall = RnMApi.getCharacterById(characterId)
+            val characterFromLocalDb = characterDao.getCharacterById(characterId)
 
             val response = characterQueryCall.execute()
             Log.d("getAllCharacter Reponse", response.body().toString())
-            if (response.code() != 200) {
+            if (response.code() != 200 && response.code() != 404) {
                 throw Exception("Result code is not 200")
             }
-
             event.code = response.code()
-            event.characters = listOf(response.body()!!)
+            event.characters = listOf(response.body() ?: characterFromLocalDb.toCharacter())
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
             event.throwable = e
             EventBus.getDefault().post(event)
         }
+    }
+
+    fun createCharacter(character: Character) {
+        characterDao.insertCharacter(character.toRoomModel())
+    }
+
+    fun updateCharacter(character: Character) {
+        characterDao.insertCharacter(character.toRoomModel())
+    }
+
+    fun deleteCharacter(character: Character) {
+        characterDao.deleteChallenge(character.id ?: 0)
     }
 }

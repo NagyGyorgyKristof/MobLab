@@ -69,7 +69,7 @@ data class Character(
     var created: String? = null
 )
 
-enum class GenderEnum private constructor(private val value: String) {
+enum class GenderEnum(val value: String) {
     @SerializedName("Female")
     FEMALE("Female"),
 
@@ -87,7 +87,7 @@ enum class GenderEnum private constructor(private val value: String) {
     }
 }
 
-enum class StatusEnum private constructor(private val value: String) {
+enum class StatusEnum(val value: String) {
     @SerializedName("alive")
     ALIVE("alive"),
 

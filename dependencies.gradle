@@ -27,6 +27,7 @@ ext {
     mockito_version = "2.23.4"
     espresso_version = "3.0.2"
     robolectric_version = "4.1"
+    room_version = '1.1.1'
 
     kotlinDependencies = [
             stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -77,6 +78,11 @@ ext {
             annotation: "io.swagger:swagger-annotations:$swagger_annotations_version",
             auth      : "org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:$oltu_version"
 
+    ]
+
+    roomDependencies = [
+            room        : "android.arch.persistence.room:runtime:$room_version",
+            roomCompiler: "android.arch.persistence.room:compiler:$room_version"
     ]
 
 }

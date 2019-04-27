@@ -10,3 +10,5 @@ data class BaseCharacterWithPages(
     @SerializedName("result")
     var result: List<Character> = ArrayList()
 )
+
+
