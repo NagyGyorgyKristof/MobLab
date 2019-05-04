@@ -1,8 +1,8 @@
 package com.example.moblabandroid.network
 
 
-import com.example.moblabandroid.model.BaseCharacterWithPages
-import com.example.moblabandroid.model.Character
+import com.example.moblabandroid.model.BaseCharacterWithPagesX
+import com.example.moblabandroid.model.Result
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -15,11 +15,11 @@ interface RnMApi {
     </BaseCharacterWithPages> */
 
     @GET("character")
-    fun getAllChars(): Call<BaseCharacterWithPages>
+    fun getAllChars(): Call<BaseCharacterWithPagesX>
 
 
     /**
-     * Create a new character
+     * Create a new characterItem
      *
      * @param body Character object that needs to be added to the server
      * @return Call<Void>
@@ -27,25 +27,25 @@ interface RnMApi {
 
     @POST("character")
     fun createNewChar(
-        @Body body: Character?
+        @Body body: Result?
     ): Call<Void>
 
 
     /**
-     * Find character by ID
-     * Returns a single character
-     * @param characterId ID of character to return
+     * Find characterItem by ID
+     * Returns a single characterItem
+     * @param characterId ID of characterItem to return
      * @return Call<Character>
     </Character> */
 
     @GET("character/{characterId}")
     fun getCharacterById(
         @Path("characterId") characterId: Long?
-    ): Call<Character>
+    ): Call<Result>
 
 
     /**
-     * Update an existing character
+     * Update an existing characterItem
      *
      * @param characterId ID of char to update
      * @param body Character object that needs to be added to the server
@@ -54,12 +54,12 @@ interface RnMApi {
 
     @PUT("character/{characterId}")
     fun updateChar(
-        @Path("characterId") characterId: Long?, @Body body: Character?
+        @Path("characterId") characterId: Long?, @Body body: Result?
     ): Call<Void>
 
 
     /**
-     * delete a character
+     * delete a characterItem
      *
      * @param characterId ID of char to update
      * @return Call<Void>
@@ -69,7 +69,5 @@ interface RnMApi {
     fun deletChar(
         @Path("characterId") characterId: Long?
     ): Call<Void>
-
-
 }
 

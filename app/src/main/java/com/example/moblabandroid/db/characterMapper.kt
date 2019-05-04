@@ -1,35 +1,37 @@
 package com.example.moblabandroid.db
 
-import com.example.moblabandroid.db.entities.*
-import com.example.moblabandroid.model.Character
+import com.example.moblabandroid.db.entities.RoomCharacter
+import com.example.moblabandroid.model.Result
 
 
-fun Character.toRoomModel(): RoomCharacter {
+fun Result.toRoomModel(): RoomCharacter {
     return RoomCharacter(
         //TODO lehet elszáll mert nincs itt id!!
-        id = id!!,
-        name = name ?: "",
-        status = status?.toRoomStatusEnum()!!,
-        species = species ?: "",
-        type = type ?: "",
-        gender = gender?.toRoomGenderEnum()!!,
-        image = image ?: ""
+        id = id.toLong(),
+        name = name,
+        status = status,
+        species = species,
+        type = type,
+        gender = gender,
+        image = image
 
     )
 }
 
-fun RoomCharacter.toCharacter(): Character {
-    return Character(
-        id = id,
+fun RoomCharacter.toResult(): Result {
+    //TODO bajok lehetnek az enumokkal
+    return Result(
+        id = id.toInt(),
         name = name,
-        status = status.toStatusEnum(),
+        status = status,
         species = species,
         type = type,
-        gender = gender.toGenderEnum(),
+        gender = gender,
         origin = null,
         location = null,
         image = image,
         episode = emptyList(),
-        created = ""
+        created = "",
+        url = ""
     )
 }

@@ -4,13 +4,14 @@ import com.example.moblabandroid.interactor.InteractorModule
 import com.example.moblabandroid.network.NetworkModule
 import com.example.moblabandroid.ui.UIModule
 import com.example.moblabandroid.ui.details.ItemDetailActivity
-import com.example.moblabandroid.ui.mainlist.ItemListActivity
+import com.example.moblabandroid.ui.mainlist.CharacterListActivity
 import dagger.Component
+import hu.autsoft.cardiolifestyle.data.db.RoomModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class])
+@Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class, RoomModule::class])
 interface ApplicationComponent {
-    fun inject(itemListActivity: ItemListActivity)
+    fun inject(characterListActivity: CharacterListActivity)
     fun inject(itemDetailActivity: ItemDetailActivity)
 }

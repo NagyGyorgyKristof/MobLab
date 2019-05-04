@@ -36,6 +36,7 @@ dependencies {
     implementation supportDependencies.appcompat
     implementation supportDependencies.cardview
     implementation supportDependencies.design
+    implementation supportDependencies.constraint
 
 
     implementation toolkitDependencies.okhttp

@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">MobLabAndroid</string>
+    <string name="app_name">RicknMorty</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="empty_list_view_title_text">No data</string>
 </resources>

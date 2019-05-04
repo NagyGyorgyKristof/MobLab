@@ -2,6 +2,7 @@ package hu.autsoft.cardiolifestyle.data.db
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.example.moblabandroid.db.CharacterDao
 import com.example.moblabandroid.db.RnMDataBase
 import dagger.Module
 import dagger.Provides
@@ -25,5 +26,5 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideCharacterDao(rnMDataBase: RnMDataBase) = rnMDataBase.characterDao()
+    fun provideCharacterDao(rnMDataBase: RnMDataBase): CharacterDao = rnMDataBase.characterDao()
 }

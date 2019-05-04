@@ -3,10 +3,10 @@ package com.example.moblabandroid.interactor
 import android.util.Log
 import com.example.moblabandroid.db.CharacterDao
 import com.example.moblabandroid.db.entities.RoomCharacter
-import com.example.moblabandroid.db.toCharacter
+import com.example.moblabandroid.db.toResult
 import com.example.moblabandroid.db.toRoomModel
 import com.example.moblabandroid.interactor.event.GetCharacterEvent
-import com.example.moblabandroid.model.Character
+import com.example.moblabandroid.model.Result
 import com.example.moblabandroid.network.RnMApi
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
@@ -24,11 +24,12 @@ class ApiInteractor @Inject constructor(
 
             val response = characterQueryCall.execute()
             Log.d("getAllCharacter Reponse", response.body().toString())
+            Log.d("getAllCharacter DB", charactersFromLocalDb.toString())
             if (response.code() != 200) {
-                throw Exception("Result code is not 200")
+                throw Exception("Result code is not 200: ${response.code()}")
             }
             event.code = response.code()
-            event.characters = response.body()?.result?.plus(charactersFromLocalDb.map(RoomCharacter::toCharacter))
+            event.characters = response.body()?.results?.plus(charactersFromLocalDb.map(RoomCharacter::toResult))
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
             event.throwable = e
@@ -49,7 +50,7 @@ class ApiInteractor @Inject constructor(
                 throw Exception("Result code is not 200")
             }
             event.code = response.code()
-            event.characters = listOf(response.body() ?: characterFromLocalDb.toCharacter())
+            event.characters = listOf(response.body() ?: characterFromLocalDb.toResult())
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
             event.throwable = e
@@ -57,15 +58,15 @@ class ApiInteractor @Inject constructor(
         }
     }
 
-    fun createCharacter(character: Character) {
+    fun createCharacter(character: Result) {
         characterDao.insertCharacter(character.toRoomModel())
     }
 
-    fun updateCharacter(character: Character) {
+    fun updateCharacter(character: Result) {
         characterDao.insertCharacter(character.toRoomModel())
     }
 
-    fun deleteCharacter(character: Character) {
-        characterDao.deleteChallenge(character.id ?: 0)
+    fun deleteCharacter(character: Result) {
+        characterDao.deleteChallenge(character.id.toLong())
     }
 }
