@@ -18,7 +18,7 @@ class UIModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun networkExecutor(): Executor = Executors.newFixedThreadPool(1)
+    fun networkExecutor(): Executor = Executors.newFixedThreadPool(1) as Executor
 
     @Provides
     @Singleton
@@ -26,7 +26,7 @@ class UIModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun artistsPresenter(executor : Executor, apiInteractor: ApiInteractor) = DetailsPresenter(executor, apiInteractor)
+    fun detailsPresenter(executor: Executor, apiInteractor: ApiInteractor) = DetailsPresenter(executor, apiInteractor)
 
 
 }

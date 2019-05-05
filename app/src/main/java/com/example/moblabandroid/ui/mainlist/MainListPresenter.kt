@@ -2,7 +2,7 @@ package com.example.moblabandroid.ui.mainlist
 
 import com.example.moblabandroid.interactor.ApiInteractor
 import com.example.moblabandroid.interactor.event.GetCharacterEvent
-import com.example.moblabandroid.model.Result
+import com.example.moblabandroid.model.CharacterX
 import com.example.moblabandroid.ui.Presenter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -26,7 +26,7 @@ class MainListPresenter @Inject constructor(
         super.detachScreen()
     }
 
-    fun refreshArtists() {
+    fun load() {
         executor.execute {
             ApiInteractor.getAllCharacter()
         }
@@ -42,7 +42,7 @@ class MainListPresenter @Inject constructor(
         } else {
             if (screen != null) {
                 if (event.characters != null) {
-                    screen?.showCharacters(event.characters as MutableList<Result>)
+                    screen?.showCharacters(event.characters as MutableList<CharacterX>)
                 }
             }
         }

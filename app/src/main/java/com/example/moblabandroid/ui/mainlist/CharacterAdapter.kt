@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.moblabandroid.R
-import com.example.moblabandroid.model.Result
+import com.example.moblabandroid.model.CharacterX
 import com.example.moblabandroid.ui.mainlist.CharacterAdapter.CharacterViewHolder
 import kotlinx.android.synthetic.main.row_character.view.*
 
-class CharacterAdapter(val context: Context) : ListAdapter<Result, CharacterViewHolder>(CharacterComparator) {
+class CharacterAdapter(val context: Context) : ListAdapter<CharacterX, CharacterViewHolder>(CharacterComparator) {
 
     var listener: Listener? = null
 
@@ -31,7 +31,7 @@ class CharacterAdapter(val context: Context) : ListAdapter<Result, CharacterView
         private val statusText = itemView.characterStatusText
         private val speciesTExt = itemView.characterSpeciesText
 
-        private var characterItem: Result? = null
+        private var characterItem: CharacterX? = null
 
         init {
             itemView.setOnClickListener {
@@ -39,7 +39,7 @@ class CharacterAdapter(val context: Context) : ListAdapter<Result, CharacterView
             }
         }
 
-        fun bind(character: Result) {
+        fun bind(character: CharacterX) {
             characterItem = character
 
             Glide.with(context).load(characterItem!!.image).into(characterImage)
@@ -50,6 +50,6 @@ class CharacterAdapter(val context: Context) : ListAdapter<Result, CharacterView
     }
 
     interface Listener {
-        fun onCharacterClicked(character: Result)
+        fun onCharacterClicked(character: CharacterX)
     }
 }

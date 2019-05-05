@@ -2,13 +2,13 @@ package com.example.moblabandroid.ui.mainlist
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.example.moblabandroid.R
 import com.example.moblabandroid.injector
-import com.example.moblabandroid.model.Result
-import com.example.moblabandroid.ui.details.ItemDetailActivity
+import com.example.moblabandroid.model.CharacterX
+import com.example.moblabandroid.ui.details.CharacterDetailActivity
+import com.example.moblabandroid.ui.details.CharacterDetailActivity.Companion.KEY_CHARACTER_ID
 import com.example.moblabandroid.ui.mainlist.CharacterAdapter.Listener
 import hu.bme.aut.android.kotifydemo.ui.utils.hide
 import hu.bme.aut.android.kotifydemo.ui.utils.show
@@ -32,14 +32,8 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
 
         injector.inject(this)
 
-
         setSupportActionBar(toolbar)
-        toolbar.title = title
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        supportActionBar?.title = getString(R.string.characters)
 
         setupRecyclerView()
         setUpRefreshView()
@@ -47,9 +41,8 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
 
     override fun onResume() {
         super.onResume()
-        injector.inject(this)
         presenter.attachScreen(this)
-        presenter.refreshArtists()
+        presenter.load()
     }
 
     override fun onPause() {
@@ -59,16 +52,17 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
 
     private fun setupRecyclerView() {
         listAdapter = CharacterAdapter(this)
+        listAdapter.listener = this
         characterList?.adapter = listAdapter
     }
 
     private fun setUpRefreshView() {
         swipeRefreshLayoutArtists?.setOnRefreshListener {
-            presenter.refreshArtists()
+            presenter.load()
         }
     }
 
-    override fun showCharacters(characters: List<Result>) {
+    override fun showCharacters(characters: List<CharacterX>) {
         swipeRefreshLayoutArtists?.isRefreshing = false
 
         if (characters.isEmpty()) {
@@ -87,8 +81,9 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    override fun onCharacterClicked(character: Result) {
-
-        startActivity(Intent(this, ItemDetailActivity::class.java))
+    override fun onCharacterClicked(character: CharacterX) {
+        val intent = Intent(this, CharacterDetailActivity::class.java)
+        intent.putExtra(KEY_CHARACTER_ID, character.id)
+        startActivity(intent)
     }
 }

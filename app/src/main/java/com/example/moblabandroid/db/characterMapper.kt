@@ -1,10 +1,10 @@
 package com.example.moblabandroid.db
 
 import com.example.moblabandroid.db.entities.RoomCharacter
-import com.example.moblabandroid.model.Result
+import com.example.moblabandroid.model.CharacterX
 
 
-fun Result.toRoomModel(): RoomCharacter {
+fun CharacterX.toRoomModel(): RoomCharacter {
     return RoomCharacter(
         //TODO lehet elszáll mert nincs itt id!!
         id = id.toLong(),
@@ -18,9 +18,9 @@ fun Result.toRoomModel(): RoomCharacter {
     )
 }
 
-fun RoomCharacter.toResult(): Result {
+fun RoomCharacter.toResult(): CharacterX {
     //TODO bajok lehetnek az enumokkal
-    return Result(
+    return CharacterX(
         id = id.toInt(),
         name = name,
         status = status,

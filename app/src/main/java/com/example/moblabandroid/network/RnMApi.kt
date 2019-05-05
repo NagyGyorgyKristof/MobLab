@@ -2,7 +2,7 @@ package com.example.moblabandroid.network
 
 
 import com.example.moblabandroid.model.BaseCharacterWithPagesX
-import com.example.moblabandroid.model.Result
+import com.example.moblabandroid.model.CharacterX
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -27,7 +27,7 @@ interface RnMApi {
 
     @POST("character")
     fun createNewChar(
-        @Body body: Result?
+        @Body body: CharacterX?
     ): Call<Void>
 
 
@@ -41,7 +41,7 @@ interface RnMApi {
     @GET("character/{characterId}")
     fun getCharacterById(
         @Path("characterId") characterId: Long?
-    ): Call<Result>
+    ): Call<CharacterX>
 
 
     /**
@@ -54,7 +54,7 @@ interface RnMApi {
 
     @PUT("character/{characterId}")
     fun updateChar(
-        @Path("characterId") characterId: Long?, @Body body: Result?
+        @Path("characterId") characterId: Long?, @Body body: CharacterX?
     ): Call<Void>
 
 

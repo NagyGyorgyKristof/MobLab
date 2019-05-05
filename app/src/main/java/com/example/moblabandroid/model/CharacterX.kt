@@ -1,6 +1,6 @@
 package com.example.moblabandroid.model
 
-data class Result(
+data class CharacterX(
     val created: String,
     val episode: List<String>,
     val gender: String,

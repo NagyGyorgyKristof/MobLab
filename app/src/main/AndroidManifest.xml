@@ -24,8 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ui.details.ItemDetailActivity"
-                android:label="@string/title_item_detail"
+                android:name=".ui.details.CharacterDetailActivity"
                 android:parentActivityName=".ui.mainlist.CharacterListActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data

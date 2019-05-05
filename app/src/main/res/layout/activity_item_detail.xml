@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:fitsSystemWindows="true"
-                                                 tools:context=".ui.details.ItemDetailActivity"
-                                                 tools:ignore="MergeRootFrame">
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.details.CharacterDetailActivity"
+        tools:ignore="MergeRootFrame">
 
     <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
@@ -20,15 +21,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                app:titleEnabled="false"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:toolbarId="@+id/toolbar">
+            <ImageView
+                    android:id="@+id/characterImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_launcher"/>
 
             <android.support.v7.widget.Toolbar
                     android:id="@+id/detail_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
+                    app:titleTextColor="@color/black"
+                    android:theme="@style/ToolbarTheme"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -39,16 +49,153 @@
             android:id="@+id/item_detail_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="24dp">
+            <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="30sp"
+                    android:textStyle="bold"/>
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.2"/>
 
-    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/stat_notify_chat"
-            app:layout_anchor="@+id/item_detail_container"
-            app:layout_anchorGravity="top|end"/>
+            <TextView
+                    android:id="@+id/StatusLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/name"
+                    app:layout_constraintEnd_toStartOf="@id/guideLine"
+                    android:textSize="16sp"
+                    android:text="@string/status"
+                    android:layout_marginTop="24dp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/statusText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/name"
+                    app:layout_constraintStart_toEndOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="8dp"/>
 
+            <TextView
+                    android:id="@+id/SpeciesLabelText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/StatusLabelText"
+                    app:layout_constraintEnd_toStartOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:text="@string/species"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/speciesText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/statusText"
+                    app:layout_constraintStart_toEndOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="8dp"/>
+
+            <TextView
+                    android:id="@+id/typeLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/SpeciesLabelText"
+                    app:layout_constraintEnd_toStartOf="@id/guideLine"
+                    android:textSize="16sp"
+                    android:text="@string/type"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/typeText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/speciesText"
+                    app:layout_constraintStart_toEndOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="8dp"/>
+
+            <TextView
+                    android:id="@+id/genderLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/typeLabelText"
+                    app:layout_constraintEnd_toStartOf="@id/guideLine"
+                    android:textSize="16sp"
+                    android:text="@string/gender"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/genderText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/typeText"
+                    app:layout_constraintStart_toEndOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="8dp"/>
+
+            <TextView
+                    android:id="@+id/originLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/genderLabelText"
+                    app:layout_constraintEnd_toStartOf="@id/guideLine"
+                    android:textSize="16sp"
+                    android:text="@string/origin"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/originText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/genderText"
+                    app:layout_constraintStart_toEndOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="8dp"/>
+
+            <TextView
+                    android:id="@+id/locationLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/originLabelText"
+                    app:layout_constraintEnd_toStartOf="@id/guideLine"
+                    android:textSize="16sp"
+                    android:text="@string/location"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/locationText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/originText"
+                    app:layout_constraintStart_toEndOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="8dp"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

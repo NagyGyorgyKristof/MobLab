@@ -2,4 +2,11 @@
     <string name="app_name">RicknMorty</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="empty_list_view_title_text">No data</string>
+    <string name="status">Status :</string>
+    <string name="species">Species :</string>
+    <string name="type">Type :</string>
+    <string name="gender">Gender :</string>
+    <string name="origin">Origin :</string>
+    <string name="location">Location :</string>
+    <string name="characters">Characters</string>
 </resources>
