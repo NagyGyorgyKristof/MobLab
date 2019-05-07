@@ -20,6 +20,7 @@ import javax.inject.Inject
 class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
 
 
+
     private lateinit var listAdapter: CharacterAdapter
 
     @Inject
@@ -62,10 +63,10 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
         }
     }
 
-    override fun showCharacters(characters: List<CharacterX>) {
+    override fun showCharacters(characters: List<CharacterX>?) {
         swipeRefreshLayoutArtists?.isRefreshing = false
 
-        if (characters.isEmpty()) {
+        if (characters?.isEmpty() == true) {
             characterList?.hide()
             tvEmpty?.show()
         } else {

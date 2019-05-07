@@ -1,16 +1,16 @@
 package com.example.moblabandroid.model
 
 data class CharacterX(
-    val created: String,
-    val episode: List<String>,
-    val gender: String,
-    val id: Int,
-    val image: String,
-    val location: LocationX?,
-    val name: String,
-    val origin: OriginX?,
-    val species: String,
-    val status: String,
-    val type: String,
-    val url: String
+    var created: String = "",
+    var episode: List<String>,
+    var gender: String = "",
+    var id: Int = 0,
+    var image: String = "",
+    var location: LocationX? = null,
+    var name: String = "",
+    var origin: OriginX? = null,
+    var species: String = "",
+    var status: String = "",
+    var type: String = "",
+    var url: String = ""
 )
