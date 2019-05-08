@@ -48,6 +48,9 @@ dependencies {
         transitive = true
     }
 
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+
+
     implementation toolkitDependencies.okhttp
     implementation toolkitDependencies.logging
     implementation toolkitDependencies.retrofit

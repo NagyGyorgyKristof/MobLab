@@ -11,6 +11,7 @@ import com.example.moblabandroid.model.CharacterX
 import com.example.moblabandroid.ui.details.CharacterDetailActivity
 import com.example.moblabandroid.ui.details.CharacterDetailActivity.Companion.KEY_CHARACTER_ID
 import com.example.moblabandroid.ui.mainlist.CharacterAdapter.Listener
+import com.google.firebase.analytics.FirebaseAnalytics
 import hu.bme.aut.android.kotifydemo.ui.utils.hide
 import hu.bme.aut.android.kotifydemo.ui.utils.show
 import io.fabric.sdk.android.Fabric
@@ -23,6 +24,8 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
 
 
     private lateinit var listAdapter: CharacterAdapter
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @Inject
     lateinit var presenter: MainListPresenter
@@ -44,11 +47,23 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
         testCrashButton.setOnClickListener {
             forceCrash()
         }
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        logAnalyticsEvent()
+    }
+
+    private fun logAnalyticsEvent() {
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "FireBase")
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "FireBase")
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
 
     fun forceCrash() {
         throw  RuntimeException("This is a test crash")
     }
+
 
     override fun onResume() {
         super.onResume()
