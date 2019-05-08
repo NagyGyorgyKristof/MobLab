@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.crashlytics.android.Crashlytics
 import com.example.moblabandroid.R
 import com.example.moblabandroid.injector
 import com.example.moblabandroid.model.CharacterX
@@ -12,13 +13,13 @@ import com.example.moblabandroid.ui.details.CharacterDetailActivity.Companion.KE
 import com.example.moblabandroid.ui.mainlist.CharacterAdapter.Listener
 import hu.bme.aut.android.kotifydemo.ui.utils.hide
 import hu.bme.aut.android.kotifydemo.ui.utils.show
+import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list.*
 import javax.inject.Inject
 
 
 class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
-
 
 
     private lateinit var listAdapter: CharacterAdapter
@@ -38,6 +39,15 @@ class CharacterListActivity : AppCompatActivity(), MainListScreen, Listener {
 
         setupRecyclerView()
         setUpRefreshView()
+
+        Fabric.with(this, Crashlytics())
+        testCrashButton.setOnClickListener {
+            forceCrash()
+        }
+    }
+
+    fun forceCrash() {
+        throw  RuntimeException("This is a test crash")
     }
 
     override fun onResume() {

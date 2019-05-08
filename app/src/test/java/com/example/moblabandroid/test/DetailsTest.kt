@@ -1,4 +1,4 @@
-package hu.bme.aut.android.kotifydemo.test
+package com.example.moblabandroid.test
 
 import com.example.moblabandroid.model.CharacterX
 import com.example.moblabandroid.testInjector

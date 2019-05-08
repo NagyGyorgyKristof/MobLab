@@ -31,6 +31,10 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.example.moblabandroid.ui.mainlist.CharacterListActivity"/>
         </activity>
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="e58289d418e9e0424cc06a7599e9d2230b63b675"
+        />
     </application>
 
 </manifest>
