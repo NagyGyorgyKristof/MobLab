@@ -8,9 +8,9 @@
     <application
             android:name=".Application"
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_rick"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@mipmap/ic_rick"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
         <activity
@@ -33,7 +33,7 @@
         </activity>
         <meta-data
                 android:name="io.fabric.ApiKey"
-                android:value="e58289d418e9e0424cc06a7599e9d2230b63b675"
+                android:value="bb1e25eb2aae7b37a5b8d4715147a55c1f62615e"
         />
     </application>
 
